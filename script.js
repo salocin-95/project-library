@@ -1,3 +1,4 @@
+const showDialog = document.querySelector("#addDialog")
 const myLibrary = [];
 
 function Book(author, title, genre, pages, read) {
@@ -22,8 +23,14 @@ function addBookToLibrary(author, title, genre, pages , read) {
 
 // Use <dialog> to open form and here use evnent.prevent    Default
 
-document.querySelector(".submit").addEventListener("click", function (e) {
+document.querySelector("#addBook").addEventListener("click", function (e) {
     console.log("me clickeaste");
     addBookToLibrary("rodrigo", "titulo", "genero", 345, true);
     console.log(myLibrary);
-})
+    showDialog.showModal();
+});
+
+document.querySelector(".submit").addEventListener("click", (event) => {
+  event.preventDefault();
+  showDialog.close();
+});
