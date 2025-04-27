@@ -16,37 +16,42 @@
         </header>
         <main>
             <div class="button">
-                <button id="addBook">
+                <button id="addBookWindow">
                     + Add book
                 </button>
             </div>
+
             <dialog id="addDialog">
-                <form>
+                
+                <form id="bookInformation">
+
                     <label for="author">Author: </label>
                     <input type="text" id="author" name="author">
+
                     <label for="title">Title: </label>
                     <input type="text" id="title" name="title">
-                    <label for="author">Genre: </label>
+
+                    <label for="genre">Genre: </label>
                     <input type="text" id="genre" name="genre">
+
                     <label for="pages">Pages: </label>
-                    <input type="number" id="number" name="number">
-                    <label for="read">
-                    <input type="checkbox" id="read" name="read">
-                    <input type="submit" value="add" class="add">
-                    <input type="submit" value="close" class="submit">
+                    <input type="number" id="pages" name="number">
+
+                    <label for="read"> Read </label>
+                    <input type="checkbox" id="read" name="read" unchecked>
+
+                    <!-- agarra todo dentro del form por alguna razón-->
+
                 </form>
+
+                <button id="addBook" type="submit" class="add">Add</button>
+                <button type="submit" class="submit">Close</button>
                 
+    
             </dialog>
+
             <div class="grid-container">
-                <div class="card">
-                    a
-                    <!--Elements of the card-->
-                    <p>Author: aUTHOR</p>
-                    <p>TItle: TItle</p>
-                    <P>GENRE: GENRE</P>
-                    <p>pages: pages</p>
-                    <p>read = true || false</p>
-                </div>
+
 
                 <div class="card">
                     a
@@ -56,6 +61,8 @@
                     <P>GENRE: GENRE</P>
                     <p>pages: pages</p>
                     <p>read = true || false</p>
+                    <br>
+                    <button type="button">Remove</button>
                 </div>
                 
                 <div class="card">
@@ -66,30 +73,59 @@
                     <P>GENRE: GENRE</P>
                     <p>pages: pages</p>
                     <p>read = true || false</p>
+                    <br>
+                    <button type="button">Remove</button>
                 </div>
-
-                <div class="card">
-                    a
-                    <!--Elements of the card-->
-                    <p>Author: aUTHOR</p>
-                    <p>TItle: TItle</p>
-                    <P>GENRE: GENRE</P>
-                    <p>pages: pages</p>
-                    <p>read = true || false</p>
-                </div>
-
-                <div class="card">
-                    a
-                    <!--Elements of the card-->
-                    <p>Author: aUTHOR</p>
-                    <p>TItle: TItle</p>
-                    <P>GENRE: GENRE</P>
-                    <p>pages: pages</p>
-                    <p>read = true || false</p>
-                </div>
-
-
                 
+                <div class="card">
+                    a
+                    <!--Elements of the card-->
+                    <p>Author: aUTHOR</p>
+                    <p>TItle: TItle</p>
+                    <P>GENRE: GENRE</P>
+                    <p>pages: pages</p>
+                    <p>read = true || false</p>
+                    <br>
+                    <button type="button">Remove</button>
+                </div>
+                
+                <div class="card">
+                    a
+                    <!--Elements of the card-->
+                    <p>Author: aUTHOR</p>
+                    <p>TItle: TItle</p>
+                    <P>GENRE: GENRE</P>
+                    <p>pages: pages</p>
+                    <p>read = true || false</p>
+                    <br>
+                    <button type="button">Remove</button>
+                </div>
+                
+                <div class="card">
+                    a
+                    <!--Elements of the card-->
+                    <p>Author: aUTHOR</p>
+                    <p>TItle: TItle</p>
+                    <P>GENRE: GENRE</P>
+                    <p>pages: pages</p>
+                    <p>read = true || false</p>
+                    <br>
+                    <button type="button">Remove</button>
+                </div>
+                
+                <div class="card">
+                    a
+                    <!--Elements of the card-->
+                    <p>Author: aUTHOR</p>
+                    <p>TItle: TItle</p>
+                    <P>GENRE: GENRE</P>
+                    <p>pages: pages</p>
+                    <p>read = true || false</p>
+                    <br>
+                    <button type="button">Remove</button>
+                </div>
+
+
             </div>
         </main>
     </div>

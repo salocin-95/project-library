@@ -48,14 +48,6 @@ header {
     padding: 2rem;
 }
 
-#addBook {
-    font-size: 1.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
 main {
     display: flex;
     flex-direction: column;
@@ -66,15 +58,15 @@ main {
     width: 100%;
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
+    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    justify-content: center;
     background-color: black;
     border: violet;
 }
 
 .card {
-    margin: 1rem;
     padding: 2rem;
-    gap: 1rem;
     background-color: red;
+    border-radius: 5px;
 }
