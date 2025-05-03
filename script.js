@@ -1,4 +1,4 @@
-const bookInfo = document.querySelector("#bookInformation")
+const bookInformation = document.querySelector("#bookInformation")
 const showDialog = document.querySelector("#addDialog")
 const myLibrary = [];
 
@@ -15,8 +15,6 @@ function Book(author, title, genre, pages, read) {
     this.read = read;
     this.id = crypto.randomUUID()
   
-
-
 };
 
 function addBookToLibrary(author, title, genre, pages , read) {
@@ -25,30 +23,37 @@ function addBookToLibrary(author, title, genre, pages , read) {
     myLibrary.push(book);
 };
 
-// Use <dialog> to open form and here use evnent.prevent    Default
-
-document.querySelector("#addBookWindow").addEventListener("click", function(e) {
-    console.log("me clickeaste");
-    addBookToLibrary("rodrigo", "titulo", "genero", 345, true);
-    console.log(myLibrary);
+// Use <dialog> to open form and here use evnent.preventDefault
+// Opens dialog window
+document.querySelector("#addBookWindow").addEventListener("click", (event) => {
+    event.preventDefault();
     showDialog.showModal();
 });
 
-document.querySelector("#addDialog").addEventListener("click", (event) => {
-  event.preventDefault
-}) 
-
-
-document.querySelector("#addBook").addEventListener("click", (event) => {
+bookInformation.addEventListener("submit", (event) => {
+  console.log('aa')
   lista = []
   event.preventDefault();
 //  bookInfo.array.forEach(element => {
 //    console.log(bookInfo[element].value
 //    });
-  for(i = 0; i < bookInfo.length; i++) {
-    console.log(bookInfo[i].value)
-    lista.push(bookInfo[i].value)
+  for(i = 0; i < bookInformation.length; i++) {
+    console.log(bookInformation[i].checked)
+    lista.push(bookInformation[i].value);
   }
 
+  showDialog.close()
+});
+
+document.querySelector(".close").addEventListener("click", (event) => {
+  event.preventDefault();
   showDialog.close();
+});
+
+document.querySelector(".remove").addEventListener("click", (event) => {
+  event.preventDefault();
+  // tiene que remover el libro del boton que estoy tocando
+  if (myLibrary > 0) {
+    console.log(myLibrary)
+  };
 });
