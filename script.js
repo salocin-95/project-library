@@ -1,6 +1,36 @@
 const bookInformation = document.querySelector("#bookInformation")
 const showDialog = document.querySelector("#addDialog")
 const myLibrary = [];
+const gridContainer = document.querySelector(".grid-container")
+
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+const addBookCard = (book) => {
+  const card = document.createElement("div")
+  card.classList.add("card")
+  gridContainer.appendChild(card)
+  i = myLibrary.length - 1
+  const button = document.createElement("button")
+
+  for (const propertyName in myLibrary[i]) {
+    if (propertyName === 'id') {
+      continue
+    } 
+//    if (propertyName === 'true' || 'false') {
+//      card.appendChild(button)
+    else {
+      let p = document.createElement("p")
+      p.innerText = `${(capitalize(propertyName))}: ${myLibrary[i][propertyName]}`
+      card.appendChild(p)
+      console.log(`${propertyName}: ${myLibrary[i][propertyName]}`)
+    }   
+    
+  }
+
+  
+}
 
 function Book(author, title, genre, pages, read) {
     // the constructor...
@@ -30,18 +60,26 @@ document.querySelector("#addBookWindow").addEventListener("click", (event) => {
     showDialog.showModal();
 });
 
-bookInformation.addEventListener("submit", (event) => {
+document.querySelector('#bookInformation').addEventListener("submit", (event) => {
   console.log('aa')
-  lista = []
+  newBook = []
   event.preventDefault();
-//  bookInfo.array.forEach(element => {
-//    console.log(bookInfo[element].value
-//    });
+
   for(i = 0; i < bookInformation.length; i++) {
-    console.log(bookInformation[i].checked)
-    lista.push(bookInformation[i].value);
+    
+    if (i < 4) {
+      newBook.push(bookInformation[i].value)
+    }
+
+    if (i === 4) {
+      newBook.push(bookInformation[i].checked)
+    }
   }
 
+  addBookToLibrary(newBook[0], newBook[1], newBook[2], newBook[3], newBook[4])
+  console.log(newBook)
+  console.log(myLibrary)
+  addBookCard(myLibrary)
   showDialog.close()
 });
 
