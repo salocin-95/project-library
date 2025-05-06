@@ -54,8 +54,12 @@ const addBookCard = (book) => {
       
       if (book[i][propertyName] === true) {
         button.classList.add("read")
+        button.classList.add("toggle-read")
+
       } else {
         button.classList.add("not-read")
+        button.classList.add("toggle-read")
+        
       }
 
     } else if (propertyName !== "id" && propertyName !== "toggleRead"){
@@ -93,14 +97,35 @@ const removeBook = (event) => {
 
 }
 
+const toggleRead = (event) => {
+ 
+  
+  const bookId = event.target.closest(".book").dataset.id
+  const book = myLibrary.find(book => book.id === bookId);
+  
+  if (book) {
+    book.toggleRead();
+  }
+  
+  if (book.read === false) {
+    event.target.classList.add("not-read")
+    event.target.classList.remove("read")
+    
+  }
+
+  if (book.read === true) {
+    event.target.classList.add("read")
+    event.target.classList.remove("not-read")
+  }
+
+}
+
 document.querySelector("#addBookWindow").addEventListener("click", (event) => {
     event.preventDefault();
     showDialog.showModal();
 });
 
-document.querySelector(".close").addEventListener("click", () => {
-  showDialog.close()
-})
+
 
 document.querySelector('#bookInformation').addEventListener("submit", (event) => {
   newBook = []
@@ -128,6 +153,11 @@ document.querySelector(".book-list").addEventListener("click", (event) => {
   if (event.target.classList.contains("remove")) {
     removeBook(event);
   }
+
+  if (event.target.classList.contains("toggle-read")) {
+    toggleRead(event)
+  }
+
 
 
 });
