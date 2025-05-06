@@ -1,40 +1,15 @@
 const bookInformation = document.querySelector("#bookInformation")
 const showDialog = document.querySelector("#addDialog")
-const myLibrary = [];
-const gridContainer = document.querySelector(".grid-container")
+const bookList = document.querySelector(".book-list")
+let myLibrary = [];
 
 function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-const addBookCard = (book) => {
-  const card = document.createElement("div")
-  card.classList.add("card")
-  gridContainer.appendChild(card)
-  i = myLibrary.length - 1
-  const button = document.createElement("button")
-
-  for (const propertyName in myLibrary[i]) {
-    if (propertyName === 'id') {
-      continue
-    } 
-//    if (propertyName === 'true' || 'false') {
-//      card.appendChild(button)
-    else {
-      let p = document.createElement("p")
-      p.innerText = `${(capitalize(propertyName))}: ${myLibrary[i][propertyName]}`
-      card.appendChild(p)
-      console.log(`${propertyName}: ${myLibrary[i][propertyName]}`)
-    }   
-    
-  }
-
-  
-}
-
 function Book(author, title, genre, pages, read) {
-    // the constructor...
-    if (!new.target) {
+
+  if (!new.target) {
         throw Error("You must use the 'new' operator to call the constructor");
     };
     
@@ -44,24 +19,90 @@ function Book(author, title, genre, pages, read) {
     this.pages = pages;
     this.read = read;
     this.id = crypto.randomUUID()
-  
+
 };
+
+Book.prototype.toggleRead = function() {
+  this.read = !this.read;
+}
+
+const addBookCard = (book) => {
+  
+  i = book.length - 1
+
+  const card = document.createElement("div")
+  card.classList.add("book")
+  
+  bookList.appendChild(card)
+  
+  const button = document.createElement("button")
+  button.innerHTML = "Read"
+  
+  const removeBtn = document.createElement("button")
+  removeBtn.innerHTML = "Remove"
+  removeBtn.classList.add("remove")
+
+
+  for (const propertyName in book[i]) {
+   
+    if (propertyName === "id") {
+      card.dataset.id = book[i][propertyName]
+    } 
+
+    if (propertyName === "read") {
+      card.appendChild(button)
+      
+      if (book[i][propertyName] === true) {
+        button.classList.add("read")
+      } else {
+        button.classList.add("not-read")
+      }
+
+    } else if (propertyName !== "id" && propertyName !== "toggleRead"){
+      let p = document.createElement("p")
+      p.innerText = `${(capitalize(propertyName))}: ${book[i][propertyName]}`
+      card.appendChild(p)
+      console.log(`${propertyName}: ${book[i][propertyName]}`)
+    }   
+    
+
+  
+  }
+
+  card.appendChild(removeBtn)
+
+}
+
 
 function addBookToLibrary(author, title, genre, pages , read) {
-  // take params, create a book then store it in the array
+
     const book = new Book(author, title, genre, pages , read);
     myLibrary.push(book);
+
 };
 
-// Use <dialog> to open form and here use evnent.preventDefault
-// Opens dialog window
+const removeBook = (event) => {
+
+  const bookElement = event.target.closest(".book")
+  
+  const bookId = bookElement.dataset.id
+
+  bookElement.remove();
+  
+  myLibrary = myLibrary.filter(book => book.id !== bookId)
+
+}
+
 document.querySelector("#addBookWindow").addEventListener("click", (event) => {
     event.preventDefault();
     showDialog.showModal();
 });
 
+document.querySelector(".close").addEventListener("click", () => {
+  showDialog.close()
+})
+
 document.querySelector('#bookInformation').addEventListener("submit", (event) => {
-  console.log('aa')
   newBook = []
   event.preventDefault();
 
@@ -77,21 +118,16 @@ document.querySelector('#bookInformation').addEventListener("submit", (event) =>
   }
 
   addBookToLibrary(newBook[0], newBook[1], newBook[2], newBook[3], newBook[4])
-  console.log(newBook)
-  console.log(myLibrary)
   addBookCard(myLibrary)
   showDialog.close()
+
 });
 
-document.querySelector(".close").addEventListener("click", (event) => {
-  event.preventDefault();
-  showDialog.close();
-});
+document.querySelector(".book-list").addEventListener("click", (event) => {
+  
+  if (event.target.classList.contains("remove")) {
+    removeBook(event);
+  }
 
-document.querySelector(".remove").addEventListener("click", (event) => {
-  event.preventDefault();
-  // tiene que remover el libro del boton que estoy tocando
-  if (myLibrary > 0) {
-    console.log(myLibrary)
-  };
+
 });
