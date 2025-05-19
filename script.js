@@ -66,7 +66,6 @@ const addBookCard = (book) => {
       let p = document.createElement("p")
       p.innerText = `${(capitalize(propertyName))}: ${book[i][propertyName]}`
       card.appendChild(p)
-      console.log(`${propertyName}: ${book[i][propertyName]}`)
     }   
     
 

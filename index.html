@@ -15,50 +15,35 @@
             </div>
         </header>
         <main>
-            <div class="button">
-                <button id="addBookWindow">
-                    + Add book
-                </button>
-            </div>
-
-            <dialog id="addDialog">
+            <div class="main-wrapper">
+                <div class="button">
+                    <button id="addBookWindow">
+                        + Add book
+                    </button>
+                </div>
+                <dialog id="addDialog">
                 
-                <form id="bookInformation">
-
-                    <p>Add a new book:</p>
-
-                    <input type="text" id="author" name="author" placeholder="Author" required>
-
-                    <input type="text" id="title" name="title" placeholder="Title" required>
-
-                    <input type="text" id="genre" name="genre" placeholder="Genre" required>
-
-                    <input type="number" id="pages" name="number" placeholder="Pages" required>
-
-                    <div class="is-read">
-                        <label for="read">Have you read this book?</label>
-                        <input type="checkbox" id="read" name="read">
+                    <form id="bookInformation">
+                        <p>Add a new book:</p>
+                        <input type="text" id="author" name="author" placeholder="Author" required>
+                        <input type="text" id="title" name="title" placeholder="Title" required>
+                        <input type="text" id="genre" name="genre" placeholder="Genre" required>
+                        <input type="number" id="pages" name="number" placeholder="Pages" required>
+                        <div class="is-read">
+                            <label for="read" style="font-size: 1.2rem;">Have you read it?</label>
+                            <input type="checkbox" id="read" name="read">
+                        </div>
+                        <div class="buttons">
+                            <button id="addBook" type="submit" class="add">Add</button>
+                
+                        </div>
+                    </form>
+                </dialog>
+                <div class="book-list">
+                </div>
+                        </main>
                     </div>
-
-
-                    <div class="buttons">
-
-                        <button id="addBook" type="submit" class="add">Add</button>
-                        
-        
-                    </div>
-
-                </form>
-
-
-    
-            </dialog>
-
-            <div class="book-list">
-  
             </div>
-        </main>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
